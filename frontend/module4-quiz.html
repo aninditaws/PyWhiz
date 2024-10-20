@@ -1,0 +1,89 @@
+<!-- Module 4 Quiz Page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PyWhiz</title>
+    <link rel="icon" href="..\assets\logo.png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<!-- Navigation Bar -->
+<header>
+    <div class="navbar">
+        <!-- Logo and Home Button -->
+        <div class="nav-left">
+            <a href="index.html">
+                <img src="..\assets/logo.png" alt="PyWhiz Logo" class="logo-image">
+            </a>
+        </div>
+        <!-- Other Navigation Links -->
+        <div class="nav-right">
+            <a href="module4.html">Modules</a>
+            <a href="about.html">About</a>
+            <a href="signin.html" class="signin-button">Sign In</a>
+        </div>
+    </div>
+</header>
+
+<body class="quiz">
+
+    <!-- Quiz Section -->
+    <section class="quiz-section">
+        <div class="quiz-container">
+
+            <h2>Quiz: What will this function return?</h2>
+            <pre><code>def add(a, b):
+    return a + b
+
+print(add(3, 4))</code></pre>
+            
+            <form id="quiz-form" data-module="1">
+                <div class="quiz-option" data-key="1">
+                    <input type="radio" id="option1" name="answer" value="correct">
+                    <label for="option1">
+                        <span class="option-number">1</span>
+                        7
+                    </label>
+                </div>
+                <div class="quiz-option" data-key="2">
+                    <input type="radio" id="option2" name="answer" value="wrong1">
+                    <label for="option2">
+                        <span class="option-number">2</span>
+                        34
+                    </label>
+                </div>
+                <div class="quiz-option" data-key="3">
+                    <input type="radio" id="option3" name="answer" value="wrong2">
+                    <label for="option3">
+                        <span class="option-number">3</span>
+                        Error
+                    </label>
+                </div>
+                <button type="submit" id="submit-button" class="submit-button" disabled>Submit Answer</button>
+            </form>
+
+        </div>
+    </section>
+
+    <!-- Back Button Section -->
+    <section class="back-button">
+        <div class="quiz-backbutton-container">
+            <a href="javascript:history.back()" class="quiz-back-button">Back</a>
+        </div>
+    </section>
+
+</body>
+
+<!-- Footer -->
+<footer>
+    <div class="footer">
+        <p>Made by Anindita Widya Santoso (18222128)</p>
+    </div>
+</footer>
+
+<!-- Quiz Algorithm -->
+<script src="quiz.js"></script>
+
+</html>

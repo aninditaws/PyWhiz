@@ -1,0 +1,377 @@
+/* CSS File*/
+
+/* GENERAL RESET BROWSER */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    background-color: #ffffff;
+    color: #444;
+    height: 100%; 
+    overflow-x: hidden; 
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding-top: 60px;
+}
+
+h1, h2, h3, h4, h5, h6, p, ul, ol {
+    margin: 0 0 1rem 0;
+    padding: 0;
+}
+
+ul, ol {
+    list-style-type: none; 
+}
+
+a {
+    text-decoration: none; 
+    color: inherit; 
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-family: inherit; 
+}
+
+/* NAVIGATION BAR */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Website Logo Styling */
+.logo-image {
+    width: 50px;
+    height: 50px;
+}
+
+/* Navigation Bar Styling */
+.nav-right a {
+    text-decoration: none;
+    color: #ffffff;
+    padding: 10px 15px;
+    margin-left: 10px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    background-color: #333;
+    transition: background-color 0.3s ease;
+}
+
+/* Hovering Navigation Bar Styling */
+.nav-right a:hover {
+    background-color: #ffffff;
+    color: #333;
+}
+
+/* PROGRESS BAR */
+
+/* Container for the progress bar */
+.progress-container {
+    width: 100%;
+    background-color: #e0e0e0; /* Light gray background */
+    border-radius: 30px; /* Rounded corners */
+    height: 20px;
+    margin: 20px 0;
+    overflow: hidden; /* Ensures the progress bar stays within the container */
+}
+
+/* The actual progress bar */
+.progress-bar {
+    height: 100%;
+    background-color: #4CAF50; /* Green color for the filled part */
+    width: 10%; /* Initial width */
+    border-radius: 30px; /* Make the bar rounded */
+    transition: width 0.5s ease-in-out; /* Smooth transition */
+}
+
+/* HOME PAGE */
+
+/* Home Page Styling */
+.home {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertical center */
+    align-items: center; /* Horizontal center */
+    text-align: center; /* Center the text */
+    padding: 20px;
+    background-color: #ffffff;
+}
+
+/* Home Page Heading Styling */
+.home h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Start Button in Home Page Styling */
+.home .start-button {
+    padding: 10px 30px;
+    background-color: #e0e0e0;
+    color: #333;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}
+
+/* Hovering Start Button in Home Page Styling */
+.home .start-button:hover {
+    background-color: #d4d4d4;
+}
+
+/* MODULES */
+
+/* Module Content Styling */
+.module-container {
+    max-width: 800px;
+    margin: 0 auto; /* Center the container */
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.module-container h2 {
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.module-container h3 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.module-container p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.module-container pre {
+    background-color: #f4f4f4;
+    padding: 15px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-family: 'Courier New', Courier, monospace;
+    margin-bottom: 20px;
+}
+
+/* Quiz Button Container Styling */
+.quizbutton-container {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    margin-top: 10px; 
+    text-align: center; 
+}
+
+/* Quiz Button Styling */
+.quiz-button {
+    padding: 10px 30px;
+    background-color: #e0e0e0;
+    color: #333;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    display: inline-block; 
+    margin: 0 auto;
+}
+
+/* Hovering Quiz Button */
+.quiz-button:hover {
+    background-color: #d4d4d4;
+}
+
+/* Back Button Container Styling */
+.module-backbutton-container {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    margin-top: 20px; 
+    text-align: center;     
+    margin-bottom: 30px;
+}
+
+/* Back Button Styling */
+.module-back-button{
+    padding: 10px 30px;
+    background-color: #e0e0e0;
+    color: #333;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    display: inline-block; 
+    margin: 0 auto;
+}
+
+/* QUIZ */
+
+/* Quiz Option Styling */
+.quiz-option {
+    display: flex;
+    align-items: center;
+    /* padding: 15px; */
+    margin: 10px 0;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    background-color: #f9f9f9; /* Light background for unselected state */
+    width: 100%; /* Ensure full width */
+}
+
+/* Hovering Quiz Option Styling */
+.quiz-option:hover {
+    background-color: #f0f0f0; /* Gray background when hovered */
+}
+
+/* Hide Radio Button */
+.quiz-option input[type="radio"] {
+    display: none;
+}
+
+/* Make the label act as a full block element and fill the width */
+.quiz-option label {
+    display: flex;
+    align-items: center;
+    width: 100%; /* Make label fill the container */
+    padding: 15px; /* Provide padding to the label */
+    border-radius: 8px; /* Rounded corners for the label */
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* Smooth transitions */
+}
+
+/* Blue background and border for entire option box when selected (clicked) */
+.quiz-option input[type="radio"]:checked + label {
+    background-color: #d1ecf9; /* Blue background when selected */
+    border: 2px solid #007bff; /* Blue border when selected */
+    color: #007bff; /* Blue text color when selected */
+}
+
+/* Style for the option number (1, 2, 3, 4) */
+.quiz-option .option-number {
+    display: inline-block;
+    background-color: #f2f2f2;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 50%;
+    margin-right: 15px;
+    font-weight: bold;
+    color: #666; /* Default gray number color */
+    border: 1px solid #ddd;
+}
+
+/* Change color for the option number when selected */
+.quiz-option input[type="radio"]:checked + label .option-number {
+    background-color: #b3e5fc; /* Light blue background for selected number */
+    color: #007bff; /* Blue number color when selected */
+    border-color: #007bff; /* Change border to blue when selected */
+}
+
+/* Ensure blue background persists when hovering on selected */
+.quiz-option input[type="radio"]:checked + label:hover {
+    background-color: #d1ecf9; /* Maintain blue when hovering on selected */
+    border-color: #007bff; /* Keep border blue */
+}
+
+/* Submit Button Styling */
+.submit-button {
+    padding: 10px 20px;
+    background-color: #5a3e99;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+/* Hovering Submit Button Styling */
+.submit-button:hover {
+    background-color: #40297a;
+}
+
+/* ABOUT dan SIGN IN */
+
+/* Typing Container Styling */
+.typing-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+/* Typing Text Styling */
+#typing-text {
+    font-size: 3rem;
+    color: #333; 
+}
+
+/* Typing Text Styling */
+#typing-text::after {
+    content: '|';  /* This adds the cursor */
+    font-weight: bold;
+    animation: blink 0.7s infinite;  /* Blinking animation */
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* FOOTER */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1.5rem 0;
+    margin-top: auto;
+    width: 100%;
+    position: relative;
+}

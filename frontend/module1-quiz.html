@@ -1,0 +1,94 @@
+<!-- Module 1 Quiz Page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PyWhiz</title>
+    <link rel="icon" href="..\assets\logo.png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<!-- Navigation Bar -->
+<header>
+    <div class="navbar">
+        <div class="nav-left">
+            <a href="index.html">
+                <img src="..\assets/logo.png" alt="PyWhiz Logo" class="logo-image">
+            </a>
+        </div>
+        <div class="nav-right">
+            <a href="module1.html">Modules</a>
+            <a href="about.html">About</a>
+            <a href="signin.html" class="signin-button">Sign In</a>
+        </div>
+    </div>
+</header>
+
+<body class="quiz">
+
+    <!-- Quiz Section -->
+    <section class="quiz-section">
+        <div class="quiz-container">
+            
+            <h2>Quiz: What will this Python code output?</h2>
+            <pre><code>print("Hello, World!")</code></pre>
+            
+            <form id="quiz-form" data-module="1">
+                <div class="quiz-option" data-key="1">
+                    <input type="radio" id="option1" name="answer" value="wrong1">
+                    <label for="option1">
+                        <span class="option-number">1</span>
+                        Hello World
+                    </label>
+                </div>
+                <div class="quiz-option" data-key="2">
+                    <input type="radio" id="option2" name="answer" value="correct">
+                    <label for="option2">
+                        <span class="option-number">2</span>
+                        Hello, World!
+                    </label>
+                </div>
+                <div class="quiz-option" data-key="3">
+                    <input type="radio" id="option3" name="answer" value="wrong2">
+                    <label for="option3">
+                        <span class="option-number">3</span>
+                        Error
+                    </label>
+                </div>
+                <div class="quiz-option" data-key="4">
+                    <input type="radio" id="option4" name="answer" value="wrong3">
+                    <label for="option4">
+                        <span class="option-number">4</span>
+                        Nothing
+                    </label>
+                </div>
+                <button type="submit" id="submit-button" class="submit-button" disabled>Submit Answer</button>
+                <a id="next-button" class="submit-button" href="./module2.html" hidden>Next</a>
+                <p id="quiz-result"></p>
+            </form>    
+        
+        </div>
+    </section>
+
+    <!-- Back Button Section -->
+    <section class="back-button">
+        <div class="quizbackbutton-container">
+            <a href="javascript:history.back()" class="quiz-back-button">Back</a>
+        </div>
+    
+    </section>
+
+</body>
+
+<!-- Footer -->
+<footer>
+    <div class="footer">
+        <p>Made by Anindita Widya Santoso (18222128)</p>
+    </div>
+</footer>
+
+<!-- Quiz Algorithm -->
+<script src="quiz.js"></script>
+
+</html>
