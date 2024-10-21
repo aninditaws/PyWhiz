@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PyWhiz</title>
     <link rel="icon" href="..\assets\logo.png">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles/styles.css">
 </head>
 
 <!-- Navigation Bar -->
@@ -30,24 +30,40 @@
     <!-- Module Content -->
     <section class="module-content">
         <div class="module-container">
-            <h2>If-Else in Python</h2>
-            <p>If-else statements allow you to control the flow of a program based on conditions.</p>
+            <h2>Conditional Statements (if-else)</h2>
+            <p>In Python, conditional statements (if, else, and elif) are used to execute certain blocks of code based on a condition.</p>
 
-            <h3>Example 1: Simple If-Else</h3>
+            <h3>Introduction to Conditional Statements</h3>
+            <li>The if statement in Python checks if a condition is true.</li>
+            <li>else provides an alternative if the condition is false.</li>
+            <li>elif allows multiple conditions to be checked in sequence.</li>
+
+            <h3>Basic Syntax for if-else</h3>
             <pre><code>age = 18
-if age >= 18:
-    print("Adult")
-else:
-    print("Not an adult")</code></pre>
 
-            <h3>Example 2: Multiple Conditions</h3>
-            <pre><code>score = 85
-if score >= 90:
-    print("A grade")
-elif score >= 80:
-    print("B grade")
+if age >= 18:
+    print("You are an adult.")
 else:
-    print("C grade")</code></pre>
+    print("You are a minor.")</code></pre>
+
+            <h3>Nested if Statements</h3>
+            <p>You can nest multiple if statements to perform more complex checks.</p>
+            <pre><code> if age >= 18:
+    if age > 65:
+        print("You are a senior citizen.")
+    else:
+        print("You are an adult.")
+else:
+print("You are a minor.")</code></pre>
+
+            <h3>Using Logical Operators</h3>
+            <p>Logical operators like and, or, and not are used to combine multiple conditions.</p>
+            <pre><code>if age >= 18 and age < 65:
+    print("You are an adult.")</code></pre>
+
+            <h3>Comparison Operators</h3>
+            <p>==, !=, >, <, >=, <= are used for comparisons.</p>
+
         </div>
     </section>
 

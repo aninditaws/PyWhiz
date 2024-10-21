@@ -92,23 +92,22 @@ button {
 
 /* PROGRESS BAR */
 
-/* Container for the progress bar */
-.progress-container {
+/* Progress Bar Styling*/
+.progress-bar {
     width: 100%;
-    background-color: #e0e0e0; /* Light gray background */
-    border-radius: 30px; /* Rounded corners */
-    height: 20px;
+    height: 15px;
+    background-color: #e0e0e0;
+    border: #000000;
+    border-radius: 10px;
     margin: 20px 0;
-    overflow: hidden; /* Ensures the progress bar stays within the container */
 }
 
-/* The actual progress bar */
-.progress-bar {
+.progress-bar-fill {
     height: 100%;
-    background-color: #4CAF50; /* Green color for the filled part */
-    width: 10%; /* Initial width */
-    border-radius: 30px; /* Make the bar rounded */
-    transition: width 0.5s ease-in-out; /* Smooth transition */
+    width: 0;
+    background-color: #4da0ff;
+    border-radius: 10px;
+    transition: width 0.5s ease;
 }
 
 /* HOME PAGE */
@@ -154,27 +153,22 @@ button {
 
 /* Module Content Styling */
 .module-container {
-    max-width: 800px;
-    margin: 0 auto; /* Center the container */
     background-color: #ffffff;
-    padding: 30px;
+    padding-left: 30px;
+    padding-right:30px;
     border-radius: 10px;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-    margin-top: 30px;
-    margin-bottom: 30px;
 }
 
 .module-container h2 {
     font-size: 2.2rem;
     font-weight: bold;
-    margin-bottom: 15px;
+    margin-top: 20px;
 }
 
 .module-container h3 {
     font-size: 1.8rem;
     font-weight: bold;
     margin-top: 20px;
-    margin-bottom: 10px;
 }
 
 .module-container p {
@@ -190,6 +184,12 @@ button {
     overflow-x: auto;
     font-family: 'Courier New', Courier, monospace;
     margin-bottom: 20px;
+}
+
+.module-container li {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 1px;    
 }
 
 /* Quiz Button Container Styling */
@@ -248,6 +248,18 @@ button {
 
 /* QUIZ */
 
+/* Quiz Container Styling */
+.quiz-container {
+    max-width: 800px;
+    margin: 0 auto; /* Center the container */
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+    margin-bottom: 30px; 
+}
+
 /* Quiz Option Styling */
 .quiz-option {
     display: flex;
@@ -264,7 +276,8 @@ button {
 
 /* Hovering Quiz Option Styling */
 .quiz-option:hover {
-    background-color: #f0f0f0; /* Gray background when hovered */
+    background-color: #c5c5c5;
+    border: 2px solid #aeaeae;
 }
 
 /* Hide Radio Button */
@@ -330,6 +343,22 @@ button {
 
 /* Hovering Submit Button Styling */
 .submit-button:hover {
+    background-color: #40297a;
+}
+
+/* Next Button Styling */
+.next-button {
+    padding: 10px 20px;
+    background-color: #5a3e99;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;  
+}
+
+/* Hovering Next Button Styling */
+.next-button:hover {
     background-color: #40297a;
 }
 
