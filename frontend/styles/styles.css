@@ -246,6 +246,41 @@ button {
 
 /* MODULES */
 
+.modules {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertical center */
+    align-items: center; /* Horizontal center */
+    text-align: flex-start; /* Center the text */
+    background-color: #ffffff;
+    gap: 20px;
+}
+
+.module-button {
+    background-color: #e0e0e0;
+    color: #333333;
+    text-decoration: none; /* Remove underline if using links */
+    font-size: 18px;
+    padding: 15px 25px;
+    border-radius: 30px; /* Rounded corners for Linktree-like buttons */
+    width: 60%;
+    text-align: center;
+    font-weight: bold;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+}
+
+.module-button:hover {
+    background-color: #d4d4d4; /* Lighter background on hover */
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
+    cursor: pointer; /* Change cursor on hover */
+}
+
+.module-button:active {
+    background-color: #c8c8c8; /* Darker background when clicked */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow when clicked */
+}
+
 /* Module Content Styling */
 .module-container {
     background-color: #ffffff;
