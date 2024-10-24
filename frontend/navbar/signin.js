@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Simulate a successful login by hardcoding credentials
         if(email === 'user@example.com' && password === 'password123') {
             // Successful login logic here
-            window.location.href = './home.html'; 
+            window.location.href = "./frontend/home.html"; 
         } else {
             // Show error if credentials are wrong
             alert('Incorrect email or password. Please try again.');

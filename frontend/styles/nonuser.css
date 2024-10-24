@@ -192,10 +192,12 @@ img {
     }
 
     .text-content h1 {
+        text-align: center;
         font-size: 2rem;
     }
 
     .text-content p {
+        text-align: center;
         font-size: 1rem;
 
     }
@@ -223,10 +225,12 @@ img {
     }
 
     .text-content h1 {
+        text-align: center;
         font-size: 1.5rem;
     }
 
     .text-content p {
+        text-align: center;
         font-size: 0.9rem;
     }
     
