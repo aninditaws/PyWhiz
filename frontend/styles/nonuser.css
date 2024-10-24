@@ -212,22 +212,6 @@ img {
         font-size: 1rem;
 
     }
-
-    /* Adjust grid for mobile */
-    .grid-container {
-        grid-template-columns: repeat(2, 1fr); /* 2 equal columns on smaller screens */
-        grid-gap: 10px;
-    }
-
-    .py-logo {
-        grid-column: 1 / span 2;
-        grid-row: 1;
-    }
-
-    .big-python, .small-python1, .man-coder, .woman-coder, .small-python2 {
-        grid-column: 1 / span 2; /* Each image takes full width in single column */
-        grid-row: auto;
-    }
 }
 
 @media only screen and (max-width: 480px) {
@@ -242,21 +226,12 @@ img {
 
     .text-content h1 {
         text-align: center;
-        font-size: 1.5rem;
+        font-size: 2rem;
     }
 
     .text-content p {
         text-align: center;
-        font-size: 0.9rem;
-    }
-    
-    .grid-container {
-        grid-template-columns: 1fr; /* Single column layout */
-        grid-gap: 10px;
-    }
-
-    .py-logo, .big-python, .small-python1, .man-coder, .woman-coder, .small-python2 {
-        grid-column: 1;
+        font-size: 1rem;
     }
 }
 
