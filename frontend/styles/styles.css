@@ -107,6 +107,7 @@ button {
 .streak {
     display: flex;
     align-items: center;
+    flex-direction: row;
     margin-right: 15px;
 }
 
@@ -150,8 +151,9 @@ button {
 /* Responsiveness */
 @media (max-width: 768px) {
     .navbar {
-        flex-direction: column;
-        align-items: flex-start;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
     }
 
     .nav-middle {
@@ -211,6 +213,10 @@ button {
     padding: 20px;
     background-color: #ffffff;
     gap: 20px;
+}
+
+.home-nav {
+    padding: 20px;
 }
 
 /* Home Page Heading Styling */
@@ -482,8 +488,16 @@ button {
 }
 
 #canvas{
-    width: 50%;
-    height: 50%;
+    width: 100%;
+    height: 300px;
+}
+
+
+/* Media query to hide the element if viewport is less than 600px */
+@media (max-width: 600px) {
+    .search-bar {
+        display: none; /* Hide on mobile devices */
+    }
 }
 
 @keyframes blink {

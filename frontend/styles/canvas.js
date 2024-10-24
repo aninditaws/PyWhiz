@@ -1,179 +1,228 @@
-var c = document.getElementById("canvas");
-var ctx = c.getContext("2d");
+const config = {
+  src: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/175711/open-peeps-sheet.png",
+  rows: 15,
+  cols: 7,
+};
+
+// UTILS
+
+const randomRange = (min, max) => min + Math.random() * (max - min);
+
+const randomIndex = (array) => randomRange(0, array.length) | 0;
+
+const removeFromArray = (array, i) => array.splice(i, 1)[0];
+
+const removeItemFromArray = (array, item) =>
+  removeFromArray(array, array.indexOf(item));
+
+const removeRandomFromArray = (array) =>
+  removeFromArray(array, randomIndex(array));
+
+const getRandomFromArray = (array) => array[randomIndex(array) | 0];
+
+// TWEEN FACTORIES
+
+const resetPeep = ({ stage, peep }) => {
+  const direction = Math.random() > 0.5 ? 1 : -1;
+  // using an ease function to skew random to lower values to help hide that peeps have no legs
+  const offsetY = 100 - 250 * gsap.parseEase("power2.in")(Math.random());
+  const startY = stage.height - peep.height + offsetY;
+  let startX;
+  let endX;
+
+  if (direction === 1) {
+    startX = -peep.width;
+    endX = stage.width;
+    peep.scaleX = 1;
+  } else {
+    startX = stage.width + peep.width;
+    endX = 0;
+    peep.scaleX = -1;
+  }
+
+  peep.x = startX;
+  peep.y = startY;
+  peep.anchorY = startY;
+
+  return {
+    startX,
+    startY,
+    endX,
+  };
+};
+
+const normalWalk = ({ peep, props }) => {
+  const { startX, startY, endX } = props;
+
+  const xDuration = 10;
+  const yDuration = 0.25;
+
+  const tl = gsap.timeline();
+  tl.timeScale(randomRange(0.5, 1.5));
+  tl.to(
+    peep,
+    {
+      duration: xDuration,
+      x: endX,
+      ease: "none",
+    },
+    0
+  );
+  tl.to(
+    peep,
+    {
+      duration: yDuration,
+      repeat: xDuration / yDuration,
+      yoyo: true,
+      y: startY - 10,
+    },
+    0
+  );
+
+  return tl;
+};
+
+const walks = [normalWalk];
+
+// CLASSES
+
+class Peep {
+  constructor({ image, rect }) {
+    this.image = image;
+    this.setRect(rect);
+
+    this.x = 0;
+    this.y = 0;
+    this.anchorY = 0;
+    this.scaleX = 1;
+    this.walk = null;
+  }
+
+  setRect(rect) {
+    this.rect = rect;
+    this.width = rect[2];
+    this.height = rect[3];
+
+    this.drawArgs = [this.image, ...rect, 0, 0, this.width, this.height];
+  }
+
+  render(ctx) {
+    ctx.save();
+    ctx.translate(this.x, this.y);
+    ctx.scale(this.scaleX, 1);
+    ctx.drawImage(...this.drawArgs);
+    ctx.restore();
+  }
+}
+
+// MAIN
+
+const img = document.createElement("img");
+img.onload = init;
+img.src = config.src;
+
+const canvas = document.querySelector("#canvas");
+const ctx = canvas.getContext("2d");
+
+const stage = {
+  width: 0,
+  height: 0,
+};
+
+const allPeeps = [];
+const availablePeeps = [];
+const crowd = [];
+
+function init() {
+  createPeeps();
+
+  // resize also (re)populates the stage
+  resize();
+
+  gsap.ticker.add(render);
+  window.addEventListener("resize", resize);
+}
+
+function createPeeps() {
+  const { rows, cols } = config;
+  const { naturalWidth: width, naturalHeight: height } = img;
+  const total = rows * cols;
+  const rectWidth = width / rows;
+  const rectHeight = height / cols;
+
+  for (let i = 0; i < total; i++) {
+    allPeeps.push(
+      new Peep({
+        image: img,
+        rect: [
+          (i % rows) * rectWidth,
+          ((i / rows) | 0) * rectHeight,
+          rectWidth,
+          rectHeight,
+        ],
+      })
+    );
+  }
+}
 
 function resize() {
-  var box = c.getBoundingClientRect();
-  c.width = box.width;
-  c.height = box.height;
+  stage.width = canvas.clientWidth;
+  stage.height = canvas.clientHeight;
+  canvas.width = stage.width * devicePixelRatio;
+  canvas.height = stage.height * devicePixelRatio;
+
+  crowd.forEach((peep) => {
+    peep.walk.kill();
+  });
+
+  crowd.length = 0;
+  availablePeeps.length = 0;
+  availablePeeps.push(...allPeeps);
+
+  initCrowd();
 }
 
-var light = {
-  x: 160,
-  y: 200,
-};
-
-var colors = ["#f5c156", "#e6616b", "#5cd3ad"];
-
-function drawLight() {
-  ctx.beginPath();
-  ctx.arc(light.x, light.y, 1000, 0, 2 * Math.PI);
-  var gradient = ctx.createRadialGradient(
-    light.x,
-    light.y,
-    0,
-    light.x,
-    light.y,
-    1000
-  );
-  gradient.addColorStop(0, "#3b4654");
-  gradient.addColorStop(1, "#2c343f");
-  ctx.fillStyle = gradient;
-  ctx.fill();
-
-  ctx.beginPath();
-  ctx.arc(light.x, light.y, 20, 0, 2 * Math.PI);
-  gradient = ctx.createRadialGradient(light.x, light.y, 0, light.x, light.y, 5);
-  gradient.addColorStop(0, "#fff");
-  gradient.addColorStop(1, "#3b4654");
-  ctx.fillStyle = gradient;
-  ctx.fill();
-}
-
-function Box() {
-  this.half_size = Math.floor(Math.random() * 50 + 1);
-  this.x = Math.floor(Math.random() * c.width + 1);
-  this.y = Math.floor(Math.random() * c.height + 1);
-  this.r = Math.random() * Math.PI;
-  this.shadow_length = 2000;
-  this.color = colors[Math.floor(Math.random() * colors.length)];
-
-  this.getDots = function () {
-    var full = (Math.PI * 2) / 4;
-
-    var p1 = {
-      x: this.x + this.half_size * Math.sin(this.r),
-      y: this.y + this.half_size * Math.cos(this.r),
-    };
-    var p2 = {
-      x: this.x + this.half_size * Math.sin(this.r + full),
-      y: this.y + this.half_size * Math.cos(this.r + full),
-    };
-    var p3 = {
-      x: this.x + this.half_size * Math.sin(this.r + full * 2),
-      y: this.y + this.half_size * Math.cos(this.r + full * 2),
-    };
-    var p4 = {
-      x: this.x + this.half_size * Math.sin(this.r + full * 3),
-      y: this.y + this.half_size * Math.cos(this.r + full * 3),
-    };
-
-    return {
-      p1: p1,
-      p2: p2,
-      p3: p3,
-      p4: p4,
-    };
-  };
-  this.rotate = function () {
-    var speed = (60 - this.half_size) / 20;
-    this.r += speed * 0.002;
-    this.x += speed;
-    this.y += speed;
-  };
-  this.draw = function () {
-    var dots = this.getDots();
-    ctx.beginPath();
-    ctx.moveTo(dots.p1.x, dots.p1.y);
-    ctx.lineTo(dots.p2.x, dots.p2.y);
-    ctx.lineTo(dots.p3.x, dots.p3.y);
-    ctx.lineTo(dots.p4.x, dots.p4.y);
-    ctx.fillStyle = this.color;
-    ctx.fill();
-
-    if (this.y - this.half_size > c.height) {
-      this.y -= c.height + 100;
-    }
-    if (this.x - this.half_size > c.width) {
-      this.x -= c.width + 100;
-    }
-  };
-  this.drawShadow = function () {
-    var dots = this.getDots();
-    var angles = [];
-    var points = [];
-
-    for (dot in dots) {
-      var angle = Math.atan2(light.y - dots[dot].y, light.x - dots[dot].x);
-      var endX =
-        dots[dot].x + this.shadow_length * Math.sin(-angle - Math.PI / 2);
-      var endY =
-        dots[dot].y + this.shadow_length * Math.cos(-angle - Math.PI / 2);
-      angles.push(angle);
-      points.push({
-        endX: endX,
-        endY: endY,
-        startX: dots[dot].x,
-        startY: dots[dot].y,
-      });
-    }
-
-    for (var i = points.length - 1; i >= 0; i--) {
-      var n = i == 3 ? 0 : i + 1;
-      ctx.beginPath();
-      ctx.moveTo(points[i].startX, points[i].startY);
-      ctx.lineTo(points[n].startX, points[n].startY);
-      ctx.lineTo(points[n].endX, points[n].endY);
-      ctx.lineTo(points[i].endX, points[i].endY);
-      ctx.fillStyle = "#2c343f";
-      ctx.fill();
-    }
-  };
-}
-
-var boxes = [];
-
-function draw() {
-  ctx.clearRect(0, 0, c.width, c.height);
-  drawLight();
-
-  for (var i = 0; i < boxes.length; i++) {
-    boxes[i].rotate();
-    boxes[i].drawShadow();
+function initCrowd() {
+  while (availablePeeps.length) {
+    // setting random tween progress spreads the peeps out
+    addPeepToCrowd().walk.progress(Math.random());
   }
-  for (var i = 0; i < boxes.length; i++) {
-    collisionDetection(i);
-    boxes[i].draw();
-  }
-  requestAnimationFrame(draw);
 }
 
-resize();
-draw();
+function addPeepToCrowd() {
+  const peep = removeRandomFromArray(availablePeeps);
+  const walk = getRandomFromArray(walks)({
+    peep,
+    props: resetPeep({
+      peep,
+      stage,
+    }),
+  }).eventCallback("onComplete", () => {
+    removePeepFromCrowd(peep);
+    addPeepToCrowd();
+  });
 
-while (boxes.length < 14) {
-  boxes.push(new Box());
+  peep.walk = walk;
+
+  crowd.push(peep);
+  crowd.sort((a, b) => a.anchorY - b.anchorY);
+
+  return peep;
 }
 
-window.onresize = resize;
-c.onmousemove = function (e) {
-  light.x = e.offsetX == undefined ? e.layerX : e.offsetX;
-  light.y = e.offsetY == undefined ? e.layerY : e.offsetY;
-};
+function removePeepFromCrowd(peep) {
+  removeItemFromArray(crowd, peep);
+  availablePeeps.push(peep);
+}
 
-function collisionDetection(b) {
-  for (var i = boxes.length - 1; i >= 0; i--) {
-    if (i != b) {
-      var dx =
-        boxes[b].x + boxes[b].half_size - (boxes[i].x + boxes[i].half_size);
-      var dy =
-        boxes[b].y + boxes[b].half_size - (boxes[i].y + boxes[i].half_size);
-      var d = Math.sqrt(dx * dx + dy * dy);
-      if (d < boxes[b].half_size + boxes[i].half_size) {
-        boxes[b].half_size =
-          boxes[b].half_size > 1 ? (boxes[b].half_size -= 1) : 1;
-        boxes[i].half_size =
-          boxes[i].half_size > 1 ? (boxes[i].half_size -= 1) : 1;
-      }
-    }
-  }
+function render() {
+  canvas.width = canvas.width;
+  ctx.save();
+  ctx.scale(devicePixelRatio, devicePixelRatio);
+
+  crowd.forEach((peep) => {
+    peep.render(ctx);
+  });
+
+  ctx.restore();
 }
