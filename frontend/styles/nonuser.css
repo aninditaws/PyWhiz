@@ -1,5 +1,155 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
 body {
     font-family: 'Inter', sans-serif;
+    background-color: #f9f9f9;
+    color: #444;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Navbar Styling */
+.navbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Website Logo Styling */
+.logo-image {
+    width: 50px;
+    height: 50px;
+}
+
+.nav-right .signin-btn {
+    border: 1px solid #333;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.3s ease;
+}
+
+.nav-right .signin-btn:hover {
+    background-color: #f3f3f3;
+}
+
+/* Main Section Styling */
+.main-content {
+    flex-grow: 1;
+    padding: 100px 40px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    width: 100%;
+    padding: 20px;
+}
+
+.text-content {
+    max-width: 600px;
+}
+
+.text-content h1 {
+    font-size: 3rem;
+    color: #333;
+}
+
+.text-content .highlight {
+    color: #3775A9; /* Blue highlight */
+}
+
+.text-content p {
+    font-size: 1.25rem;
+    margin-top: 10px;
+    line-height: 1.6;
+}
+
+/* General Styling for Images */
+img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px; /* Optional: rounding the corners for a clean look */
+    object-fit: cover;
+}
+
+/* Grid container */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
+    grid-gap: 20px; /* Gap between the items */
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 20px;
+    justify-items: center; /* Centers content horizontally */
+    align-items: center; /* Centers content vertically */
+}
+
+/* Python logo */
+.py-logo {
+    grid-column: 1 / span 2; /* Take up 2 columns */
+    grid-row: 1;
+}
+
+/* Big Python Image */
+.big-python {
+    grid-column: 3 / span 2; /* Take up 2 columns */
+    grid-row: 1;
+}
+
+/* Small Python 1 Image */
+.small-python1 {
+    grid-column: 3; /* Place it in column 3 */
+    grid-row: 2;
+}
+
+/* Man Coder Image */
+.man-coder {
+    grid-column: 4; /* Place it in column 4 */
+    grid-row: 2;
+}
+
+/* Woman Coder Image */
+.woman-coder {
+    grid-column: 1 / span 2; /* Take up 2 columns */
+    grid-row: 3;
+}
+
+/* Small Python 2 Image */
+.small-python2 {
+    grid-column: 3 / span 2; /* Take up 2 columns */
+    grid-row: 3;
+}
+
+
+/* Footer Styling */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: #fff;
+    font-size: 0.9rem;
 }
 
 /* Modal styles */
