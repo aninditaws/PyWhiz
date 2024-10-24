@@ -418,6 +418,10 @@ button {
     border-color: #007bff; /* Keep border blue */
 }
 
+#quiz-result {
+    margin-top: 10px;
+}
+
 /* Submit Button Styling */
 .submit-button {
     padding: 10px 20px;
