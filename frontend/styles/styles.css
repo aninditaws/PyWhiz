@@ -92,9 +92,15 @@ button {
 
 /* PROGRESS BAR */
 
-/* Progress Bar Styling*/
+/* Progress Bar Styling */
+.progress-bar-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    margin-top: 20px; /* Optional: Add space at the top */
+}
+
 .progress-bar {
-    width: 100%;
+    width: 80%; /* Adjust width as necessary */
     height: 15px;
     background-color: #e0e0e0;
     border-radius: 10px;
@@ -103,11 +109,12 @@ button {
 
 .progress-bar-fill {
     height: 100%;
-    width: 0; /* Starts at 0 */
+    width: 20%; /* Starts at 20% for this example */
     background-color: #4da0ff;
     border-radius: 10px;
     transition: width 0.5s ease;
 }
+
 
 /* HOME PAGE */
 
