@@ -7,7 +7,7 @@ let wordIndex = 0;
 let letterIndex = 0;
 let currentWord = "";
 let isDeleting = false;
-let typingSpeed = 200; 
+let typingSpeed = 150; 
 
 function type() {
   currentWord = words[wordIndex];

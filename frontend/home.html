@@ -13,22 +13,30 @@
 <header>
 
     <nav class="navbar">
-        <div class="navbar-left">
-          <a href="#" class="brand">
-            <img src="../assets/logo.png" alt="PyWhiz Logo" class="logo-image"> <!-- Add your logo -->
-            <span>PyWhiz</span>
-          </a>
-          <a href="#">Home</a>
-          <a href="#">Courses</a>
+        <div class="nav-left">
+          <a href="#" class="logo"><img src="../assets/logo.png" alt="PyWhiz Logo" class="logo"></a>
+          <a href="#" class="home"><i class="fa fa-home"></i> Home</a>
+          <a href="./modules/modules.html" class="modules"><i class="fa fa-file-text"></i> Modules</a>
         </div>
       
-        <div class="navbar-right">
-          <input type="text" placeholder="Search" class="search-bar">
-          <button class="start-trial">Start Trial</button>
-          <span class="icon-lightning">1 ⚡</span>
-          <button class="hamburger-menu">&#9776;</button>
+        <div class="nav-middle">
+          <input type="text" placeholder="Search..." class="search-bar">
         </div>
-      </nav>
+
+        <div class="nav-right">
+          <div class="streak">
+              <span>2🔥</span>
+          </div>
+          <div class="menu-icon">
+              <img src="../assets/menu.png" alt="Menu">
+              <div class="dropdown-content">
+                <a href="./navbar/profile.html">Profile</a>
+                <!-- <a href="#">Help</a> -->
+                <a href="../index.html">Log out</a>
+
+          </div>
+      </div>
+    </nav>
       
 </header>
 
@@ -37,7 +45,7 @@
 
     <section class="home">
         <div class="home-container">
-            <h1>Belajar Python Sekarang!</h1>
+            <h1>Mulai Belajar Sekarang!</h1>
             <a href="./modules/module1.html" class="start-button">Mulai</a>
         </div>
     </section>

@@ -34,24 +34,25 @@ body {
 }
 
 /* Website Logo Styling */
-.logo-image {
+.logo {
     width: 50px;
     height: 50px;
 }
 
 /* Sign In Button Styling */
 .nav-right .signin-btn {
-    border: 1px solid #333;
+    background-color: #3775A9;
     padding: 10px 20px;
     border-radius: 8px;
     text-decoration: none;
-    color: #333;
+    color: white;
     transition: background-color 0.3s ease;
 }
 
 /* Sign In Button Hovering Styling */
 .nav-right .signin-btn:hover {
-    background-color: #f3f3f3;
+    background-color: #265276;
+    color: white;    
 }
 
 /* Main Section Styling */
@@ -72,6 +73,7 @@ body {
     max-width: 1200px;
     width: 100%;
     padding: 20px;
+    gap: 100px;
 }
 
 .text-content {
@@ -98,33 +100,33 @@ body {
     font-family: 'Inter', sans-serif;
   }
   
-  /* Styling for the "Belajar Python" heading */
-  .typing-container h1 {
+/* Styling for the "Belajar Python" heading */
+.typing-container h1 {
     font-size: 48px;
     font-weight: bold;
     color: #333;
-  }
+}
   
-  /* Styling for the typing text */
-  .typing-container h2 {
+/* Styling for the typing text */
+.typing-container h2 {
     font-size: 48px;
     font-weight: bold;
     color: #3775A9; 
     display: inline-block;
-  }
+}
   
-  #typing-text::after {
+#typing-text::after {
     content: '|';
     font-weight: bold;
     animation: blink 0.7s infinite;
-  }
+}
   
-  /* Blinking cursor */
-  @keyframes blink {
+/* Blinking cursor */
+@keyframes blink {
     0% { opacity: 1; }
     50% { opacity: 0; }
     100% { opacity: 1; }
-  }
+}
   
 /* General Styling for Images */
 img {
@@ -138,10 +140,10 @@ img {
 .grid-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
-    grid-gap: 20px; /* Gap between the items */
+    grid-gap: 10px; /* Gap between the items */
     margin: 0 auto;
     max-width: 1200px;
-    padding: 20px;
+    padding: 20px 20px 20px 20px;
     justify-items: center; /* Centers content horizontally */
     align-items: center; /* Centers content vertically */
 }
@@ -149,7 +151,7 @@ img {
 /* Python logo */
 .py-logo {
     grid-column: 1 / span 2; /* Take up 2 columns */
-    grid-row: 1;
+    grid-row: 1 / span 2;
 }
 
 /* Big Python Image */
@@ -180,6 +182,62 @@ img {
 .small-python2 {
     grid-column: 3 / span 2; /* Take up 2 columns */
     grid-row: 3;
+}
+
+@media only screen and (max-width: 768px) {
+    .content-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .text-content h1 {
+        font-size: 2rem;
+    }
+
+    .text-content p {
+        font-size: 1rem;
+
+    }
+
+    /* Adjust grid for mobile */
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 equal columns on smaller screens */
+        grid-gap: 10px;
+    }
+
+    .py-logo {
+        grid-column: 1 / span 2;
+        grid-row: 1;
+    }
+
+    .big-python, .small-python1, .man-coder, .woman-coder, .small-python2 {
+        grid-column: 1 / span 2; /* Each image takes full width in single column */
+        grid-row: auto;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .content-container {
+        padding: 20px;
+    }
+
+    .text-content h1 {
+        font-size: 1.5rem;
+    }
+
+    .text-content p {
+        font-size: 0.9rem;
+    }
+    
+    .grid-container {
+        grid-template-columns: 1fr; /* Single column layout */
+        grid-gap: 10px;
+    }
+
+    .py-logo, .big-python, .small-python1, .man-coder, .woman-coder, .small-python2 {
+        grid-column: 1;
+    }
 }
 
 
@@ -268,6 +326,10 @@ input[type="password"] {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+}
+
+#signup-password {
+    margin-bottom: 10px;
 }
 
 /* Button styling */
