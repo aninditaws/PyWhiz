@@ -1,3 +1,4 @@
+// Sign In Logic
 document.addEventListener('DOMContentLoaded', function () {
     const modal = document.getElementById('authModal');
     const signInForm = document.getElementById('signinForm');
@@ -42,14 +43,13 @@ document.addEventListener('DOMContentLoaded', function () {
         event.preventDefault();  // Prevent the default form submission
     
         // Assuming we have the logic to check credentials
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
+        const email = document.getElementById('signin-email').value;
+        const password = document.getElementById('signin-password').value;
     
         // Simulate a successful login by hardcoding credentials
         if(email === 'user@example.com' && password === 'password123') {
             // Successful login logic here
-            alert('Sign-in successful!');
-            window.location.href = '../index.html';  // Redirect to index.html
+            window.location.href = './home.html'; 
         } else {
             // Show error if credentials are wrong
             alert('Incorrect email or password. Please try again.');

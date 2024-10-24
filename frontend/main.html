@@ -24,16 +24,15 @@
     </div>
 </header>
 
-<!-- Main Section -->
 <body>
 
-    <!-- Modal Popup for Sign In and Sign Up -->
+    <!-- Popup for Sign In and Sign Up -->
     <div id="authModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
             <div id="signinForm">
                 <h2>Sign In</h2>
-                <form>
+                <form id="signin-form">
                     <label for="email">Email</label>
                     <input type="email" id="signin-email" name="email" required>
                     <label for="password">Password</label>
@@ -46,7 +45,7 @@
             <!-- Sign Up Form (hidden by default) -->
             <div id="signupForm" class="hidden">
                 <h2>Sign Up</h2>
-                <form>
+                <form id="signup-form">
                     <label for="signup-email">Email</label>
                     <input type="email" id="signup-email" name="email" required>
                     <label for="signup-password">Password</label>
@@ -63,9 +62,13 @@
     <main class="main-content">
         <div class="content-container">
             <div class="text-content">
-                <h1>Belajar Python <span class="highlight">Kapanpun!</span></h1>
+                <div class="typing-container">
+                    <h1>Belajar Python</h1>
+                    <h2 id="typing-text"></h2>
+                  </div>                
                 <p>Learn Python in a simple and enjoyable way, one step at a time, and boost your skills in just a few minutes each day.</p>
             </div>
+          
             <div class="grid-container">
                 <div class = "py-logo">
                     <img src="../assets/py-logo.png" alt="Python Logo">
@@ -85,13 +88,14 @@
                 <div class ="small-python2">
                     <img src="../assets/small_python-page2.png" alt="Small Python Language Screenshot Image">
                 </div>
-            </div>
+            </div>    
         </div>
     </main>
-    
+
 </body>
 
 <script src="./navbar/signin.js"></script>
+<script src="./styles/main-typing.js"></script>
 
 <!-- Footer -->
 <footer>
