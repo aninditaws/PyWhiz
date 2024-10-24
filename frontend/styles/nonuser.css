@@ -191,6 +191,11 @@ img {
         text-align: center;
     }
 
+    .typing-container {
+        align-items: center; 
+        text-align: center;  
+    }
+
     .text-content h1 {
         text-align: center;
         font-size: 2rem;
@@ -222,6 +227,11 @@ img {
 @media only screen and (max-width: 480px) {
     .content-container {
         padding: 20px;
+    }
+
+    .typing-container {
+        align-items: center; 
+        text-align: center;  
     }
 
     .text-content h1 {
