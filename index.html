@@ -6,14 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PyWhiz</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="../assets\logo.png">
+    <link rel="icon" href="../assets/logo.png">
     <link rel="stylesheet" href="frontend/styles/nonuser.css">
 </head>
+<body>
 
 <!-- Navigation Bar -->
 <header>
     <div class="navbar">
-        <div class="nav-left-">
+        <div class="nav-left">
             <a href="./index.html">
                 <img src="../assets/logo.png" alt="PyWhiz Logo" class="logo">
             </a>
@@ -24,82 +25,80 @@
     </div>
 </header>
 
-<body>
+<!-- Popup Modal for Sign In and Sign Up -->
+<div id="authModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
 
-    <!-- Popup for Sign In and Sign Up -->
-    <div id="authModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <div id="signinForm">
-                <h2>Sign In</h2>
-                <form id="signin-form">
-                    <label for="email">Email</label>
-                    <input type="email" id="signin-email" name="email" required>
-                    <label for="password">Password</label>
-                    <input type="password" id="signin-password" name="password" required>
-                    <button type="submit" class="btn">Sign In</button>
-                </form>
-                <p>Don't have an account? <a href="#"id="showSignup">Sign Up</a></p>
+        <!-- Sign In Form -->
+        <div id="signinForm">
+            <h2>Sign In</h2>
+            <form id="signin-form">
+                <label for="signin-email">Email</label>
+                <input type="email" id="signin-email" name="email" required>
+                <label for="signin-password">Password</label>
+                <input type="password" id="signin-password" name="password" required>
+                <button type="submit" class="btn">Sign In</button>
+            </form>
+            <p>Don't have an account? <a href="#" id="showSignup">Sign Up</a></p>
+        </div>
+
+        <!-- Sign Up Form -->
+        <div id="signupForm" style="display: none;">
+            <h2>Sign Up</h2>
+            <form id="signup-form">
+                <label for="signup-email">Email</label>
+                <input type="email" id="signup-email" name="email" required>
+                <label for="signup-password">Password</label>
+                <input type="password" id="signup-password" name="password" required>
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" name="confirm-password" required>
+                <button type="submit" class="btn">Sign Up</button>
+            </form>
+            <p>Already have an account? <a href="#" id="showSignin">Sign In</a></p>
+        </div>
+    </div>
+</div>
+
+<!-- Main Content -->
+<main class="main-content">
+    <div class="content-container">
+        <div class="text-content">
+            <div class="typing-container">
+                <h1>Belajar Python</h1>
+                <h2 id="typing-text"></h2>
             </div>
+            <p>Learn Python in a simple and enjoyable way, one step at a time, and boost your skills in just a few minutes each day.</p>
+        </div>
 
-            <!-- Sign Up Form (hidden by default) -->
-            <div id="signupForm" class="hidden">
-                <h2>Sign Up</h2>
-                <form id="signup-form">
-                    <label for="signup-email">Email</label>
-                    <input type="email" id="signup-email" name="email" required>
-                    <label for="signup-password">Password</label>
-                    <input type="password" id="signup-password" name="password" required>
-                    <label for="confirm-password">Confirm Password</label>
-                    <input type="password" id="confirm-password" name="confirm-password" required>
-                    <button type="submit" class="btn">Sign Up</button>
-                </form>
-                <p>Already have an account? <a href="#" id="showSignin">Sign In</a></p>
+        <div class="grid-container">
+            <div class="py-logo">
+                <img src="../assets/py-logo.png" alt="Python Logo">
+            </div>
+            <div class="big-python">
+                <img src="../assets/big_python-page.png" alt="Big Python Language Screenshot Image">
+            </div>
+            <div class="small-python1">
+                <img src="../assets/small_python-page1.png" alt="Small Python Language Screenshot Image">
+            </div>
+            <div class="man-coder">
+                <img src="../assets/man-coder.png" alt="Man Coder">
+            </div>
+            <div class="woman-coder">
+                <img src="../assets/woman-coder.png" alt="Woman Coder">
+            </div>
+            <div class="small-python2">
+                <img src="../assets/small_python-page2.png" alt="Small Python Language Screenshot Image">
             </div>
         </div>
     </div>
-    
-    <main class="main-content">
-        <div class="content-container">
-            <div class="text-content">
-                <div class="typing-container">
-                    <h1>Belajar Python</h1>
-                    <h2 id="typing-text"></h2>
-                  </div>                
-                <p>Learn Python in a simple and enjoyable way, one step at a time, and boost your skills in just a few minutes each day.</p>
-            </div>
-          
-            <div class="grid-container">
-                <div class = "py-logo">
-                    <img src="../assets/py-logo.png" alt="Python Logo">
-                </div>
-                <div class = "big-python">
-                    <img src="../assets/big_python-page.png" alt="Big Python Language Screenshot Image">
-                </div>
-                <div class="small-python1">
-                    <img src="../assets/small_python-page1.png" alt="Small Python Language Screenshot Image">
-                </div>
-                <div class="man-coder">
-                    <img src="../assets/man-coder.png" alt="Man Coder">
-                </div>
-                <div class = "woman-coder">
-                    <img src="../assets/woman-coder.png" alt="Woman Coder">
-                </div>
-                <div class ="small-python2">
-                    <img src="../assets/small_python-page2.png" alt="Small Python Language Screenshot Image">
-                </div>
-            </div>    
-        </div>
-    </main>
-
-</body>
-
-<script src="frontend/navbar/signin.js"></script>
-<script src="frontend/styles/main-typing.js"></script>
+</main>
 
 <!-- Footer -->
 <footer>
     <p>Made by Anindita Widya Santoso (18222128)</p>
 </footer>
 
-</html>
+<!-- JavaScript Files -->
+<script src="frontend/navbar/signin.js"></script>
+<script src="frontend/styles/main-typing.js"></script>
