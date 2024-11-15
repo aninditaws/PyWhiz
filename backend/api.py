@@ -8,7 +8,5 @@ supabase: Client = create_client(supabase_url, supabase_key)
 
 app = create_app()
 
-app.supabase = supabase
-
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8000)
+    app.run(debug=True, host="0.0.0.0", port=5000)
