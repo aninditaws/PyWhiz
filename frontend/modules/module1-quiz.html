@@ -1,4 +1,3 @@
-<!-- Module 1 Quiz Page -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,74 +16,81 @@
                 <img src="/assets/logo.png" alt="PyWhiz Logo" class="logo">
             </a>
         </div>
+
         <div class="nav-right">
-            <a href="module1.html">Modules</a>
+            <div class="points">
+                <span id="points">0</span>
+                <span>⭐</span>
+            </div>
+            <div class="menu-icon">
+                <img src="../../assets/menu.png" alt="Menu">
+                <div class="dropdown-content">
+                    <a href="./navbar/profile.html">Profile</a>
+                    <a href="#" id="logout">Log out</a>
+                </div>
+            </div>
         </div>
     </div>
 </header>
 
 <body class="quiz">
-
-    <!-- Progress Bar -->
-    <div class="progress-bar-container">
-        <div class="progress-bar">
-            <div class="progress-bar-fill"></div>
-        </div>
+<!-- Progress Bar -->
+<div class="progress-bar-container">
+    <div class="progress-bar">
+        <div class="progress-bar-fill"></div>
     </div>
-    
-    <script src="../styles/progress-bar.js"></script>
+</div>
 
-    <!-- Quiz Section -->
-    <section class="quiz-section">
-        <div class="quiz-container">
-            <!-- Back Button Section -->
-            <section class="back-button">
-                <div class="quizbackbutton-container">
-                    <a href="javascript:history.back()" class="quiz-back-button">Back</a>
-                </div>
-            
-            </section>
-                     
-            <h2>Quiz: What will this Python code output?</h2>
-            <pre><code>print("Hello, World!")</code></pre>
-            
-            <form id="quiz-form" data-module="1">
-                <div class="quiz-option" data-key="1">
-                    <input type="radio" id="option1" name="answer" value="wrong1">
-                    <label for="option1">
-                        <span class="option-number">1</span>
-                        Hello World
-                    </label>
-                </div>
-                <div class="quiz-option" data-key="2">
-                    <input type="radio" id="option2" name="answer" value="correct">
-                    <label for="option2">
-                        <span class="option-number">2</span>
-                        Hello, World!
-                    </label>
-                </div>
-                <div class="quiz-option" data-key="3">
-                    <input type="radio" id="option3" name="answer" value="wrong2">
-                    <label for="option3">
-                        <span class="option-number">3</span>
-                        Error
-                    </label>
-                </div>
-                <div class="quiz-option" data-key="4">
-                    <input type="radio" id="option4" name="answer" value="wrong3">
-                    <label for="option4">
-                        <span class="option-number">4</span>
-                        Nothing
-                    </label>
-                </div>
-                <button type="submit" id="submit-button" class="submit-button" disabled>Submit Answer</button>
-                <p id="quiz-result"></p>
-                <a id="next-button" class="submit-button" href="./module2.html" hidden>Next</a>
-            </form>    
-        
-        </div>
-    </section>
+<script src="../styles/progress-bar.js"></script>
 
+<!-- Quiz Section -->
+<section class="quiz-section">
+    <div class="quiz-container">
+        <!-- Back Button Section -->
+        <section class="back-button">
+            <div class="quizbackbutton-container">
+                <a href="javascript:history.back()" class="quiz-back-button">Back</a>
+            </div>
+        </section>
+
+        <h2>Quiz: What will this Python code output?</h2>
+        <pre><code>print("Hello, World!")</code></pre>
+
+        <form id="quiz-form" data-module="1">
+            <div class="quiz-option" data-key="1">
+                <input type="radio" id="option1" name="answer" value="wrong1">
+                <label for="option1">
+                    <span class="option-number">1</span>
+                    Hello World
+                </label>
+            </div>
+            <div class="quiz-option" data-key="2">
+                <input type="radio" id="option2" name="answer" value="correct">
+                <label for="option2">
+                    <span class="option-number">2</span>
+                    Hello, World!
+                </label>
+            </div>
+            <div class="quiz-option" data-key="3">
+                <input type="radio" id="option3" name="answer" value="wrong2">
+                <label for="option3">
+                    <span class="option-number">3</span>
+                    Error
+                </label>
+            </div>
+            <div class="quiz-option" data-key="4">
+                <input type="radio" id="option4" name="answer" value="wrong3">
+                <label for="option4">
+                    <span class="option-number">4</span>
+                    Nothing
+                </label>
+            </div>
+            <button type="submit" id="submit-button" class="submit-button" disabled>Submit Answer</button>
+            <p id="quiz-result"></p>
+            <a id="next-button" class="submit-button" href="./module2.html" hidden>Next</a>
+        </form>
+    </div>
+</section>
 </body>
 
 <!-- Footer -->
@@ -94,7 +100,44 @@
     </div>
 </footer>
 
-<!-- Quiz Algorithm -->
-<script src="quiz.js"></script>
+<!-- Quiz Algorithm and Points Fetch -->
+<script>
+    document.addEventListener("DOMContentLoaded", async function () {
+        const token = localStorage.getItem("token");
 
+        if (!token) {
+            alert("You must be logged in to view this page.");
+            window.location.href = "../index.html";
+            return;
+        }
+
+        // Fetch current points from the server
+        try {
+            const response = await fetch("http://localhost:5000/profile", {
+                method: "GET",
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            });
+
+            if (response.ok) {
+                const profileData = await response.json();
+                document.getElementById("points").textContent = profileData.points; // Display the current points
+            } else {
+                console.error("Failed to fetch profile data.");
+            }
+        } catch (error) {
+            console.error("Error fetching profile data:", error);
+        }
+
+        // Logout button functionality
+        document.getElementById("logout").addEventListener("click", function() {
+            localStorage.removeItem("token");
+            alert("You have been logged out.");
+            window.location.href = "../../index.html";
+        });
+
+    });
+</script>
+<script src="quiz.js"></script>
 </html>

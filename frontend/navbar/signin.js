@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Handle Sign In form submission
+// Handle Sign In form submission
     document.getElementById('signin-form').addEventListener('submit', async function(event) {
         event.preventDefault();
         const email = document.getElementById('signin-email').value;
@@ -55,8 +56,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const data = await response.json();
             if (response.ok) {
+                // Store token in localStorage
+                localStorage.setItem("token", data.token);
                 alert("Login successful!");
-                window.location.href = "frontend/home.html"; // Redirect after successful login
+                window.location.href = "frontend/home.html"; // Redirect to the home page
             } else {
                 alert(data.message || "Login failed.");
             }
@@ -65,6 +68,7 @@ document.addEventListener('DOMContentLoaded', function () {
             alert("An error occurred during login. Please try again.");
         }
     });
+
 
     // Handle Sign Up form submission
 // Sign Up Submission

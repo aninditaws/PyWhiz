@@ -1,45 +1,199 @@
-<!-- Home Page -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PyWhiz</title>
+    <title>Profile - PyWhiz</title>
     <link rel="icon" href="/assets/logo.png">
     <link rel="stylesheet" href="../styles/styles.css">
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .profile-container {
+            width: 100%;
+            max-width: 500px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .info-row {
+            margin: 10px 0;
+            text-align: left;
+        }
+
+        .info-label {
+            font-weight: bold;
+            color: #555;
+        }
+
+        .info-value {
+            color: #333;
+        }
+
+        .update-container {
+            margin-top: 20px;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 24px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .logout-btn {
+            background-color: #dc3545;
+        }
+
+        .logout-btn:hover {
+            background-color: #c82333;
+        }
+    </style>
 </head>
 
+<body>
 <!-- Navigation Bar -->
 <header>
     <div class="navbar">
         <div class="nav-left">
-            <a href="index.html">
+            <a href="../home.html">
                 <img src="/assets/logo.png" alt="PyWhiz Logo" class="logo">
             </a>
         </div>
         <div class="nav-right">
-            <a href="module1.html">Modules</a>
+            <a href="../modules/modules.html">Modules</a>
+            <a href="../home.html">Home</a>
         </div>
     </div>
 </header>
 
-<!-- To Be Developed -->
-<body>
-    
-    <div class="typing-container">
-        <h1 id="typing-text"></h1>
+
+<div class="profile-container">
+    <h1>Your Profile</h1>
+    <div class="info-row">
+        <p class="info-label">Name:</p>
+        <p id="profile-name" class="info-value">John Doe</p> <!-- Default Name -->
+    </div>
+    <div class="info-row">
+        <p class="info-label">Email:</p>
+        <p id="profile-email" class="info-value">johndoe@example.com</p>
     </div>
 
+    <div class="update-container">
+        <p><strong>Update Name:</strong></p>
+        <input type="text" id="new-name" placeholder="Enter new name" />
+        <button id="update-name-btn">Update Name</button>
+    </div>
+
+    <button id="logout-btn" class="logout-btn">Logout</button>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", async function() {
+        const token = localStorage.getItem("token");
+
+        // Redirect to login page if no token
+        if (!token) {
+            alert("You must be logged in to view your profile.");
+            window.location.href = "../../index.html";
+            return;
+        }
+
+        // Fetch profile data
+        try {
+            const response = await fetch("http://localhost:5000/profile", {
+                method: "GET",
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            });
+
+            if (response.ok) {
+                const profileData = await response.json();
+                document.getElementById("profile-name").innerText = profileData.name || "Not set";
+                document.getElementById("profile-email").innerText = profileData.email;
+            } else {
+                alert("Session expired, please log in again.");
+                localStorage.removeItem("token");
+                window.location.href = "../../index.html";
+            }
+        } catch (error) {
+            console.error("Error fetching profile data:", error);
+            alert("An error occurred. Please log in again.");
+            localStorage.removeItem("token");
+            window.location.href = "../../index.html";
+        }
+
+        // Update name functionality
+        document.getElementById("update-name-btn").addEventListener("click", async function() {
+            const newName = document.getElementById("new-name").value;
+            if (!newName) {
+                alert("Please enter a new name.");
+                return;
+            }
+
+            const response = await fetch("http://localhost:5000/update-name", {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+                body: JSON.stringify({ name: newName })
+            });
+
+            const result = await response.json();
+            console.log("Update response:", result);  // Log response for debugging
+
+            if (response.ok) {
+                alert("Name updated successfully!");
+                document.getElementById("profile-name").innerText = newName;  // Update displayed name
+                document.getElementById("new-name").value = "";  // Clear input field
+            } else {
+                alert(result.message || "Failed to update name.");
+            }
+        });
+
+
+        // Logout button functionality
+        document.getElementById("logout-btn").addEventListener("click", function() {
+            localStorage.removeItem("token");
+            alert("You have been logged out.");
+            window.location.href = "../../index.html";
+        });
+    });
+</script>
 </body>
- 
-<!-- Footer -->
-<footer>
-    <div class="footer">
-        <p>Made by Anindita Widya Santoso (18222128)</p>
-    </div>
-</footer>
-
-<!-- Script Typing Text -->
-<script src="styles/typing.js"></script>
-
 </html>

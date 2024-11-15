@@ -1,10 +1,9 @@
-<!-- Home Page -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home | PyWhiz</title>
+    <title>Modules | PyWhiz</title>
     <link rel="icon" href="../../assets/logo.png">
     <link rel="stylesheet" href="../styles/styles.css">
 </head>
@@ -14,33 +13,31 @@
 
     <nav class="navbar">
         <div class="nav-left">
-          <a href="home.html" class="logo"><img src="../../assets/logo.png" alt="PyWhiz Logo" class="logo"></a>
+          <a href="../home.html" class="logo"><img src="../../assets/logo.png" alt="PyWhiz Logo" class="logo"></a>
           <a href="../home.html" class="home-nav"><i class="fa fa-home"></i> Home</a>
         </div>
       
-        <div class="nav-middle">
-          <input type="text" placeholder="Search..." class="search-bar">
-        </div>
+<!--        <div class="nav-middle">-->
+<!--          <input type="text" placeholder="Search..." class="search-bar">-->
+<!--        </div>-->
 
         <div class="nav-right">
-          <div class="streak">
-           <span>2</span>
-           <span>🔥</span>
-          </div>
-          <div class="menu-icon">
-              <img src="../../assets/menu.png" alt="Menu">
-              <div class="dropdown-content">
-                <a href="./navbar/profile.html">Profile</a>
-                <!-- <a href="#">Help</a> -->
-                <a href="../index.html">Log out</a>
-
-          </div>
+            <div class="points">
+                <span id="points">0</span>
+                <span>⭐</span>
+            </div>
+            <div class="menu-icon">
+                <img src="../../assets/menu.png" alt="Menu">
+                <div class="dropdown-content">
+                    <a href="../navbar/profile.html">Profile</a>
+                    <a href="#" id="logout">Log out</a>
+                </div>
+            </div>
+        </div>
       </div>
     </nav>
-      
 </header>
 
-<!-- Intro on Home Page -->
 <body class="home-page">
 
     <section class="modules">
@@ -67,4 +64,43 @@
     </div>
 </footer>
 
+<!-- Quiz Algorithm and Points Fetch -->
+<script>
+    document.addEventListener("DOMContentLoaded", async function () {
+        const token = localStorage.getItem("token");
+
+        if (!token) {
+            alert("You must be logged in to view this page.");
+            window.location.href = "../index.html";
+            return;
+        }
+
+        // Fetch current points from the server
+        try {
+            const response = await fetch("http://localhost:5000/profile", {
+                method: "GET",
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            });
+
+            if (response.ok) {
+                const profileData = await response.json();
+                document.getElementById("points").textContent = profileData.points; // Display the current points
+            } else {
+                console.error("Failed to fetch profile data.");
+            }
+        } catch (error) {
+            console.error("Error fetching profile data:", error);
+        }
+
+        // Logout button functionality
+        document.getElementById("logout").addEventListener("click", function() {
+            localStorage.removeItem("token");
+            alert("You have been logged out.");
+            window.location.href = "../../index.html";
+        });
+    });
+</script>
+<script src="quiz.js"></script>
 </html>

@@ -89,15 +89,15 @@ button {
     justify-content: center;
 }
 
-.search-bar {
-    width: 100%;
-    max-width: 400px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f0f0f0;
-    font-size: 1rem;
-}
+/*.search-bar {*/
+/*    width: 100%;*/
+/*    max-width: 400px;*/
+/*    padding: 10px;*/
+/*    border: 1px solid #ccc;*/
+/*    border-radius: 5px;*/
+/*    background-color: #f0f0f0;*/
+/*    font-size: 1rem;*/
+/*}*/
 
 .nav-right {
     display: flex;
@@ -167,9 +167,9 @@ button {
         margin-top: 10px;
     }
 
-    .search-bar {
-        width: 100%;
-    }
+    /*.search-bar {*/
+    /*    width: 100%;*/
+    /*}*/
 }
 
 
@@ -245,6 +245,10 @@ button {
 }
 
 /* MODULES */
+.modules-menu {
+    background-color: #ffffff;
+    gap: 20px;
+}
 
 .modules {
     flex-grow: 1;
@@ -252,7 +256,6 @@ button {
     flex-direction: column;
     justify-content: center; /* Vertical center */
     align-items: center; /* Horizontal center */
-    text-align: flex-start; /* Center the text */
     background-color: #ffffff;
     gap: 20px;
 }
@@ -529,11 +532,11 @@ button {
 
 
 /* Media query to hide the element if viewport is less than 600px */
-@media (max-width: 600px) {
-    .search-bar {
-        display: none; /* Hide on mobile devices */
-    }
-}
+/*@media (max-width: 600px) {*/
+/*    .search-bar {*/
+/*        display: none; !* Hide on mobile devices *!*/
+/*    }*/
+/*}*/
 
 @keyframes blink {
     0% { opacity: 1; }
