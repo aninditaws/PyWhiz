@@ -1,6 +1,6 @@
-from app import create_app
+import os
+from supabase import create_client, Client
 
-app = create_app()
-
-def handler(event, context):
-    return app(event, context)
+supabase_url = os.getenv("SUPABASE_URL")
+supabase_key = os.getenv("SUPABASE_KEY")
+supabase: Client = create_client(supabase_url, supabase_key)
