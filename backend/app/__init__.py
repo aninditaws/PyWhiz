@@ -20,5 +20,5 @@ def create_app():
     from .routes import auth
     app.register_blueprint(auth)
 
-    CORS(app, resources={r"/*": {"origins": "https://py-whiz.vercel.app"}}
+    CORS(app, resources={r"/*": {"origins": "https://py-whiz.vercel.app"}})
     return app
