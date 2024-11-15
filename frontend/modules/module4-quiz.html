@@ -114,7 +114,7 @@ print(add(3, 4))</code></pre>
 
         // Fetch current points from the server
         try {
-            const response = await fetch("http://localhost:5000/profile", {
+            const response = await fetch("https://pywhiz-be.vercel.app/profile", {
                 method: "GET",
                 headers: {
                     "Authorization": `Bearer ${token}`

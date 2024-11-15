@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const token = localStorage.getItem("token");
     if (token) {
       try {
-        const response = await fetch("http://localhost:5000/update-points", {
+        const response = await fetch("https://pywhiz-be.vercel.app/update-points", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
